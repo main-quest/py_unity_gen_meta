@@ -5,14 +5,15 @@ import posixpath
 
 
 # Generate .meta files for all files/folders in Unity-style.
-# If in terminal, execute as 'import py_unity_gen_meta; print py_unity_gen_meta.unity_gen_meta(<directory>)'
+# If in terminal, execute as py -c 'import py_unity_gen_meta; print py_unity_gen_meta.unity_gen_meta(<directory>)'
+# Use double-quotes on Windows
 # If @param root_dir is not specified, the current dir is processed
-def unity_gen_meta(root_dir="."):
+def gen(root_dir="."):
     __rec(root_dir)
 
 
 # Generate from the command-line param for the dir
-def unity_gen_meta_from_cmd_arg():
+def gen_from_cmd_arg():
 
     my_name = sys.argv[0]
     if len(sys.argv) != 2:
@@ -21,7 +22,7 @@ def unity_gen_meta_from_cmd_arg():
     root_dir = sys.argv[1]
     if not posixpath.isdir(root_dir):
         raise Exception(f"{my_name}: directory '{root_dir}' doesn't exist")
-    unity_gen_meta(root_dir)
+    gen(root_dir)
 
 
 # As per https://docs.unity3d.com/2019.3/Documentation/Manual/SpecialFolders.html
