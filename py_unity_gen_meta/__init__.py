@@ -9,19 +9,17 @@ import posixpath
 # Use double-quotes on Windows
 # If @param root_dir is not specified, the current dir is processed
 def gen(root_dir="."):
+    if not posixpath.isdir(root_dir):
+        raise Exception(f"{__file__}: directory '{root_dir}' doesn't exist")
     __rec(root_dir)
 
 
 # Generate from the command-line param for the dir
 def gen_from_cmd_arg():
-
-    my_name = sys.argv[0]
     if len(sys.argv) != 2:
-        raise Exception(f"{my_name}: exactly 1 arg is expected")
+        raise Exception(f"{__file__}: exactly 1 arg is expected")
 
     root_dir = sys.argv[1]
-    if not posixpath.isdir(root_dir):
-        raise Exception(f"{my_name}: directory '{root_dir}' doesn't exist")
     gen(root_dir)
 
 
