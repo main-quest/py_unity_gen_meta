@@ -46,7 +46,7 @@ def __write_meta_file_if_needed(fs_entry_path, is_dir):
 
     with_meta_path = f"{fs_entry_path}.meta"
     if is_dir:
-        if posixpath.isdir(with_meta_path):
+        if posixpath.isfile(with_meta_path):
             return
     elif posixpath.isfile(with_meta_path):
             return
